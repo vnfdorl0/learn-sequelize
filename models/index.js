@@ -3,7 +3,7 @@ const Sequelize = require('sequelize');
 
 const env = process.env.NODE_ENV || 'development';
 // 환경 변수에서 현재 환경을 가져오거나 기본값으로 'development'를 사용
-const config = require('/../config/config.json')[env];
+const config = require('../config/config.json')[env];
 // 설정 파일에서 현재 환경에 해당하는 설정을 가져오기
 const db = {}; // 데이터베이스 객체 저장용 빈 객체 생성
 
