@@ -1,4 +1,4 @@
-const Sequelize = require('requelize'); // Sequelize 패키지
+const Sequelize = require('sequelize'); // Sequelize 패키지
 
 // user 클래스 정의 -> Sequelize.Model 상속
 class User extends Sequelize.Model {

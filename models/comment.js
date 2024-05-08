@@ -1,4 +1,4 @@
-const Sequelize = requre('sequelize'); // Sequelize 모듈
+const Sequelize = require('sequelize'); // Sequelize 모듈
 
 // Comment 클래스를 Sequelize 모델을 상속 받아 정의
 class Comment extends Sequelize.Model {
@@ -8,7 +8,7 @@ class Comment extends Sequelize.Model {
         Comment.init({
             // comment 열 정의
             comment: {
-                type: Sequelilze.STRING(100), // 타입: 문자열(길이 100)
+                type: Sequelize.STRING(100), // 타입: 문자열(길이 100)
                 allowNull: false, // NULL이 허용되지 않음.
             },
             // created_at 열 정의
@@ -36,6 +36,10 @@ class Comment extends Sequelize.Model {
     static associate(db) {
         // Comment 모델이 User 모델에 속한다는 관계를 정의
         db.Comment.belongsTo(db.User, { foreignKey: 'commeter', targetKey: 'id' });
+        // Comment 모델과 User 모델 간으 일대다 관계를 설정
+        // belongsTo 메서드 -> Comment 모델이 User 모델에 속한다는 관계를 정의합니다.
+        // foreignKey -> 외부 키 이름을 지정, Comment 모델의 'commenter' 열이 외부 키로 사용됨.
+        // targetKey -> 연결된 모델의 기본 키 지정, User 모델의 'id' 열이 기본 키로 사용됨.
     }
 };
 
