@@ -21,7 +21,7 @@ class User extends Sequelize.Model {
                     min: 0 // 음수가 아닌 값을 강제하는 유효성 검사 추가
                 },
             },
-            mirried: { // 나이 속성 저의
+            mirried: { // 결혼 여부 속성 정의
                 type: Sequelize.BOOLEAN, // 부울 타입(true/false)
                 allowNull: false, // null 허용하지 않음.
             },
@@ -29,10 +29,10 @@ class User extends Sequelize.Model {
                 type: Sequelize.TEXT, // 텍스트 타입
                 allowNull: true, // null 허용하지 않음.
             },
-            created_at: { // 코멘트 속성 정의
+            created_at: { // 생성 일자 속성 정의
                 type: Sequelize.DATE, // 날짜/시간 타입
                 allowNull: false, // null 허용하지 않음.
-                defaultValue: Sequelize.NoW, // 기본값 -> 현재 시간
+                defaultValue: Sequelize.NOW, // 기본값 -> 현재 시간
             },
         }, {
             // 테이블 옵션
@@ -53,7 +53,7 @@ class User extends Sequelize.Model {
     } 
     // 다른 모델과의 관계 정의
     static associate(db) {
-        db.User.hasMany(db.Comment, { fordignKey: 'commenter', sourceKey: 'id' });
+        db.User.hasMany(db.Comment, { foreignKey: 'commenter', sourceKey: 'id' });
         // hasMany 매서드 -> User 모델과 Comment 모델 간의 일대다 관계 설정(User는 여러 개의 Comment를 가질 수 있음.)
         // foreignKey: 외부키 이름을 지정, 'commenter' -> Comment 모델의 'commenter' 열이 외부 키로 사용됨.
         // sourceKey: 기본 키 이름을 지정, 'id' -> User 모델의 'id' 열이 기본 키로 사용됨.
